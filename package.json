@@ -1,0 +1,24 @@
+{
+  "name": "free-code-camp",
+  "version": "1.0.0",
+  "description": "FreeCodeCamp work and curriculum",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferchorduy/free-code-camp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ferchorduy/free-code-camp/issues"
+  },
+  "homepage": "https://github.com/ferchorduy/free-code-camp#readme",
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}

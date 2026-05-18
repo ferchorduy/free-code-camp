@@ -3,6 +3,7 @@ BINGO RANGE
 Given a bingo letter, return the number range associated with that letter.
 
 | Letter | Number Range |
+|--------|--------------|
 |   "B"	 |     1-15     |
 |   "I"	 |     16-30    |
 |   "N"	 |     31-45    |
