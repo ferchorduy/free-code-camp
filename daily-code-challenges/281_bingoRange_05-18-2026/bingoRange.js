@@ -1,4 +1,4 @@
-function bingoRange(letter) {
+function bingoRange() {
 
 }
 
