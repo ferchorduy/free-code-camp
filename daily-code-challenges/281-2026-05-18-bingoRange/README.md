@@ -1,5 +1,5 @@
 # Exercise 281 - BINGO RANGE
-# May 18, 2026
+### May 18, 2026
 
 Given a bingo letter, return the number range associated with that letter.
 

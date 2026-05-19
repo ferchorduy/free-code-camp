@@ -1,4 +1,4 @@
-const bingoRange = require('./bingoRange');
+const bingoRange = require('./bingoRange-solution');
 
 describe('bingoRange', () => {
   test('returns array with correct numbers for B', () => {
