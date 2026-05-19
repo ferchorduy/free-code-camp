@@ -36,7 +36,8 @@ function toTitle(str) {
 // ─── Paths ────────────────────────────────────────────────────────────────────
 
 const folderName = `${exerciseNum}-${date}-${challengeName}`;
-const folderPath = path.join(process.cwd(), 'daily-challenges', folderName);
+const folderPath = path.join(process.cwd(), 'daily-code-challenges', folderName);
+const solutionPath = path.join(folderPath, 'solution');
 
 if (fs.existsSync(folderPath)) {
   console.error(`Folder already exists: ${folderPath}`);
@@ -44,6 +45,7 @@ if (fs.existsSync(folderPath)) {
 }
 
 fs.mkdirSync(folderPath, { recursive: true });
+fs.mkdirSync(solutionPath, { recursive: true });
 
 const formattedDate = formatDate(date);
 const title = toTitle(challengeName);
@@ -98,7 +100,7 @@ describe('${challengeName}', () => {
 
 const SOLUTION_SPEC = `const ${challengeName} = require('./${challengeName}-solution');
 
-describe('${challengeName}', () => {
+describe('${challengeName} — solution', () => {
   test('', () => {
     expect(${challengeName}()).toEqual();
   });
@@ -107,31 +109,42 @@ describe('${challengeName}', () => {
 
 // ─── Write Files ──────────────────────────────────────────────────────────────
 
-const files = {
-  'README.md':                                    README,
-  [`${challengeName}.js`]:                        STARTER_JS,
-  [`${challengeName}.spec.js`]:                   STARTER_SPEC,
-  [`${challengeName}-solution.js`]:               SOLUTION_JS,
-  [`${challengeName}-solution.spec.js`]:          SOLUTION_SPEC,
+// Root files
+const rootFiles = {
+  'README.md':                              README,
+  [`${challengeName}.js`]:                  STARTER_JS,
+  [`${challengeName}.spec.js`]:             STARTER_SPEC,
 };
 
-for (const [filename, content] of Object.entries(files)) {
+// Solution folder files
+const solutionFiles = {
+  [`${challengeName}-solution.js`]:         SOLUTION_JS,
+  [`${challengeName}-solution.spec.js`]:    SOLUTION_SPEC,
+};
+
+for (const [filename, content] of Object.entries(rootFiles)) {
   fs.writeFileSync(path.join(folderPath, filename), content);
+}
+
+for (const [filename, content] of Object.entries(solutionFiles)) {
+  fs.writeFileSync(path.join(solutionPath, filename), content);
 }
 
 // ─── Done ─────────────────────────────────────────────────────────────────────
 
 console.log(`
-✓ Created: daily-challenges/${folderName}/
+✓ Created: daily-code-challenges/${folderName}/
   ├── README.md
   ├── ${challengeName}.js
   ├── ${challengeName}.spec.js
-  ├── ${challengeName}-solution.js
-  └── ${challengeName}-solution.spec.js
+  └── solution/
+      ├── ${challengeName}-solution.js
+      └── ${challengeName}-solution.spec.js
 
 Next steps:
   1. Fill in README.md with the problem description and hints
-  2. Add test cases to ${challengeName}.spec.js and ${challengeName}-solution.spec.js
-  3. Write your solution in ${challengeName}-solution.js
-  4. Run: npm test ${challengeName}.spec.js
+  2. Add test cases to ${challengeName}.spec.js
+  3. Add test cases to solution/${challengeName}-solution.spec.js
+  4. Write your solution in solution/${challengeName}-solution.js
+  5. Run: npm test ${challengeName}.spec.js
 `);
