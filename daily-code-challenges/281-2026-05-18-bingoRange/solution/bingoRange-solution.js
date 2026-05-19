@@ -41,6 +41,7 @@ function bingoRange(letter) {
   return numArray;
 }
 
+
 function bingoRange(letter) {
   const [start, end] = ranges[letter];
   return Array.from({ length: end - start + 1 }, (_, i) => start + i);
